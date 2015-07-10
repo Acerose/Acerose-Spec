@@ -3,9 +3,9 @@
 
 0x01    Join Game
     Entity ID               Integer
-    Gamemode                Unsigned Byte
-    Dimension               Byte
-    Difficulty              Unsigned Byte
+    Gamemode                Unsigned Byte (0: survival, 1: creative, 2: adventrue, 3: spectator)
+    Dimension               Byte (-1: Nether, 0: World, 1: End)
+    Difficulty              Unsigned Byte (0: Peaceful, 1: Easy, 2: Normal, 3: Hard)
     Max Players             Unsigned Byte
     Level Type              String (default, flat, largeBiomes, amplified, default_1_1)
     Reduced Debug Info      Boolean
