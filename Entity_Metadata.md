@@ -127,16 +127,16 @@ Index	 Type	Meaning
                         2       Whitefield
                         3       White Dots
                         4       Black Dots
-21	    String	Owner Name
-22	    Int	Value	Type
-0	No Armor
-1	Iron Armor
-2	Gold Armor
-3	Diamond Armor
-Bat
-Extends Living Entity
+21	    String  Owner Name
+22	    Int	    Value	  Type
+                0	      No Armor
+                1	      Iron Armor
+                2	      Gold Armor
+                3	      Diamond Armor
+
+Bat Extends Living Entity
 Index	Type	Meaning
-16	Byte	Is Hanging
+16	    Byte	Is Hanging
 
 Tameable
 Extends Ageable
