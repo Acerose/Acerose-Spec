@@ -23,3 +23,8 @@ Position
             if x >= 2^25 { x -= 2^26 }
             if y >= 2^11 { y -= 2^12 }
             if z >= 2^25 { z -= 2^26 }
+
+UUID
+    Vanilla MC sends UUIDs as 2 longs
+    uuid.getMostSignificantBits()
+    uuid.getLeastSignificantBits()
