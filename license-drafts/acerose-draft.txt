@@ -19,13 +19,13 @@ between both parties.
                                 Section 0.
                                 Definitions
 
-"fuck"  - Refers to a usually lude and offensive act of a sexual nature between one or more parties,
+"fuck"  - Refers to a usually lewd and offensive act of a sexual nature between one or more parties,
           where 'parties' hereby can refer to deceased individuals.
 
                                 Section 1.
                                 Responsibilities  of the Licensee
 
-The licensee is permitted to create systems dependant upon, or using directly, those portions
+The licensee is permitted to create systems dependent upon, or using directly, those portions
 of the software accounted for in agreement with the licensor. Should their agreement with the
 licensor expire or be revoked with reasonable notice (reasonable referring to a minimum of 12 hours
 prior notice of termination of contract), continued usage of the software will be evaluated in
@@ -61,7 +61,7 @@ works:
     - Should the licensor either dislike a potential licensee, or disagree with the terms
       of a licensee contract during negotiation, renewal, or dispute, the
       licensor is permitted to send any considerable volume of the following to the licensee
-      either digitally, or provided that shipment is feasable, physically:
+      either digitally, or provided that shipment is feasible, physically:
 
             1.  "Bad Dragon" "CumLube" brand personal lubricant in an amount not exceeding
                 100 United States Gallons per-shipping container.
