@@ -1,3 +1,5 @@
+**This document describes the protocol for communication from the server to the client.**
+
 ## Keep Alive (0x00)
 | Name           | Type    | Comments                               |
 |:---------------|:-------:|:---------------------------------------|
