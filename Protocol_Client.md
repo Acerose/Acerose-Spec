@@ -72,3 +72,10 @@
 0x0C    Spawn Player
     Entity ID       VarInt
     Player UUID     UUID
+    X               Integer
+    Y               Integer
+    Z               Integer
+    Yaw             Angle
+    Pitch           Angle
+    Current Item    Short (0 == no item, negative will crash client)
+    Metadata        Metadata (no Metadata will crash client)

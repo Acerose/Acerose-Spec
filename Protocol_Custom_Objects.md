@@ -28,3 +28,10 @@ UUID
     Vanilla MC sends UUIDs as 2 longs
     uuid.getMostSignificantBits()
     uuid.getLeastSignificantBits()
+
+Angle
+    Rotation angle in steps of 1/256 of a full turn
+    sign does not matter since resulting angles are equivalent
+
+Metadata
+    See Metadata file
