@@ -71,18 +71,18 @@
     X_ROT     0x10
 -->
 
-# Handshake (0x09)
+## Handshake (0x09)
 | Name           | Type      | Comments                   |
 |:---------------|:---------:|:---------------------------|
 | Slot           | Byte      | 0-8, slot player selected) |
 
-# Use Bed (0x0A)
+## Use Bed (0x0A)
 | Name           | Type      | Comments                   |
 |:---------------|:---------:|:---------------------------|
 | Entity ID      | VarInt    |                            |
 | Location       | Position  | ????                       |
 
-# Animation (0x0B)
+## Animation (0x0B)
 | Name           | Type          | Comments                                                                             |
 |:---------------|:-------------:|:-------------------------------------------------------------------------------------|
 | Entity ID      | VarInt        |                                                                                      |
@@ -97,7 +97,7 @@ ID  Animation
 5   Magic critical effect
 -->
 
-# Spawn Player (0x0C)
+## Spawn Player (0x0C)
 | Name            | Type          | Comments                                                 |
 |:----------------|:-------------:|:---------------------------------------------------------|
 | Entity ID       | VarInt        |                                                          |
