@@ -387,7 +387,8 @@ Modifiers           | Array[Modifier] | See below array for modifier definition
 Modifier Name                                                                    | Description and Known Values                                                                                                                                                                            | Known Attributes Modified
 :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------
 Random spawn bonus                                                               | Generated upon spawning; a random number from a Gaussian distribution ranging from 0.0 to 0.05*. For Zombie Knockback Resistance, another value between 0.0 and 0.05* is also generated.                | generic.followRange (Operation 1; all mobs), Knockback Resistance (Operation 0; Villagers and Zombies only)
-Tool modifier                                                                    | Value varies based on tool.                                                                                                                                                                             | generic.attackDamage (Operation 0; all tools; UUID CB3F55D3-645C-4F38-A497-9C13A33DB5CF)
+Tool modifier                                                                    | Value varies based on tool.                                                                                                                                                                             | generic.attackDamage (Operation 0; all tools; UUID CB3F55D3-645C-4F38-A497-9CName                                                                    | Type | Comments
+:--------                                                                        | :----:                                                                                                                                                                                                  | :--------------13A33DB5CF)
 Weapon modifier                                                                  | Value varies based on weapon.                                                                                                                                                                           | generic.attackDamage (Operation 0; all tools; UUID CB3F55D3-645C-4F38-A497-9C13A33DB5CF (same UUID as Tool modifier))
 Sprinting speed boost                                                            | Fixed value of 0.3* used by all mobs (including players) when sprinting.                                                                                                                                | generic.movementSpeed (Operation 2; all living entities; UUID 662A6B8D-DA3E-4C1C-8813-96EA6097278D)
 Fleeing speed boost                                                              | Fixed value of 2 used by all passive mobs when fleeing.                                                                                                                                                 | generic.movementSpeed (Operation 2; all passive mobs; UUID E199AD21-BA8A-4C53-8D13-6182D5C69D3A)
@@ -406,16 +407,7 @@ potion.healthBoost or potion.healthBoost # (where # is the potion's amplifier)  
 Unknown synced attribute modifier                                                | Unknown; created when client reads attribute data sent by server.                                                                                                                                       | varies
 
 ## Known Key Values
-
-Key                         | Default           | Min | Max             | Label
-:-------------------------- | :---------------: | :-: | :-------------: | :--------------------------
-generic.maxHealth           | 20.0              | 0.0 | Double.MaxValue | Max Health
-generic.followRange         | 32.0              | 0.0 | 2048.0          | Follow Range
-generic.knockbackResistance | 0.0               | 0.0 | 1.0             | Knockback Resistance
-generic.movementSpeed       | 0.699999988079071 | 0.0 | Double.MaxValue | Movement Speed
-generic.attackDamage        | 2.0               | 0.0 | Double.MaxValue |
-horse.jumpStrength          | 0.7               | 0.0 | 2.0             | Jump Strength
-zombie.spawnReinforcements  | 0.0               | 0.0 | 1.0             | Spawn Reinforcements Chance
+Key<br>:-------------------------- | :---------------: | :-: | :-------------: | :-------------------------- generic.maxHealth           | 20.0              | 0.0 | Double.MaxValue | Max Health generic.followRange         | 32.0              | 0.0 | 2048.0          | Follow Range generic.knockbackResistance | 0.0               | 0.0 | 1.0             | Knockback Resistance generic.movementSpeed       | 0.699999988079071 | 0.0 | Double.MaxValue | Movement Speed generic.attackDamage        | 2.0               | 0.0 | Double.MaxValue | horse.jumpStrength          | 0.7               | 0.0 | 2.0             | Jump Strength zombie.spawnReinforcements  | 0.0               | 0.0 | 1.0             | Spawn Reinforcements Chance
 
 ### Modifier Data Structure
 
@@ -427,6 +419,50 @@ Operation  | Byte
 
 # Chunk Data (0x21)
 
-Name | Type | Comments
-:--- | :--: | :-------
-     |      |
+Name                | Type           | Comments
+:------------------ | :------------: | :-----------------------------------------------------------------------------------------------------------------------------------
+Chunk X             | Integer        |
+Chunk Z             | Integer        |
+Group-Up Continuous | Boolean        | True if the packet is all vertical sections of the chunk (primary bit mask specifies which sections are included, and which are air)
+Primary Bit Mask    | Unsigned Short | Bitmask with 1 for every 16x16x16 section whose data follows in the compressed data
+Size                | VarInt         | Size of the following Data
+Data                | Chunk          | See map-doc/chunk.md
+
+# Multi Block Change (0x22)
+
+Name         | Type          | Comments
+:----------- | :-----------: | :--------------------------------------------------------------------------------
+Chunk X      | Integer       |
+Chunk Z      | Integer       |
+Record Count | VarInt        | Number of elements in the following array (same as the number of blocks affected)
+Record       | Array[Record] | See below table for the record definition
+
+Name                | Type          | Comments
+:------------------ | :-----------: | :--------------------------------------------------------------------------------------------------------------------------------------------------
+Horizontal Position | Unsigned Byte | The 4 most significant bits (0xF0) encode the X coord, chunk relative. The 4 least significant bits (0x0F) encode the Z coordinate, chunk relative.
+Y Coordinate        | Unsigned Byte |
+Block ID            | VarInt        | The new block ID for the block. <br><code>id << 4 &#124; data</code>
+
+# Block Change (0x23)
+
+Name     | Type     | Comments
+:------- | :------: | :-------------------------------------------------------------------
+Location | Position | Block Coordinates, see custom-objects.md
+Block ID | VarInt   | The new block ID for the block. <br><code>id << 4 &#124; data</code>
+
+# Block Action (0x24)
+
+Name       | Type          | Comments
+:--------- | :-----------: | :----------------------------------------------
+Location   | Position      | Block Coordinates, see custom-objects.md
+Byte 1     | Unsigned Byte | Varies depending on block, see map-doc/block.md
+Byte 2     | Unsigned Byte | Same as Byte 1
+Block Type | VarInt        | The block type for the block
+
+# Block Break Animation (0x25)
+
+Name          | Type     | Comments
+:------------ | :------: | :------------------------------------------
+Entity ID     | VarInt   |
+Location      | Position | see custom-objects.md
+Destroy Stage | Byte     | 0-9 to set it, any other value to remove it
